@@ -1,3 +1,5 @@
+# Forked for Scala 2.13 and Spark 3.5, have fun!
+
 # Spark+DynamoDB
 Plug-and-play implementation of an Apache Spark custom data source for AWS DynamoDB.
 

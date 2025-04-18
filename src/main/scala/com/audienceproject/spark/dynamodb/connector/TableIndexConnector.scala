@@ -44,7 +44,7 @@ private[dynamodb] class TableIndexConnector(tableName: String, indexName: String
         val indexDesc = table.describe().getGlobalSecondaryIndexes.asScala.find(_.getIndexName == indexName).get
 
         // Key schema.
-        val keySchema = KeySchema.fromDescription(indexDesc.getKeySchema.asScala)
+        val keySchema = KeySchema.fromDescription(indexDesc.getKeySchema.asScala.toSeq)
 
         // User parameters.
         val bytesPerRCU = parameters.getOrElse("bytesPerRCU", "4000").toInt

@@ -20,10 +20,11 @@
   */
 package com.audienceproject.spark.dynamodb.datasource
 
-import org.apache.spark.sql.connector.read.partitioning.{Distribution, Partitioning}
+import org.apache.spark.sql.connector.distributions.Distribution
+import org.apache.spark.sql.connector.read.partitioning.Partitioning
 
 class OutputPartitioning(override val numPartitions: Int) extends Partitioning {
 
-    override def satisfy(distribution: Distribution): Boolean = false
+    //override def satisfy(distribution: Distribution): Boolean = false
 
 }

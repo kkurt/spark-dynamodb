@@ -48,7 +48,7 @@ private[dynamodb] class TableConnector(tableName: String, parallelism: Int, para
         val desc = table.describe()
 
         // Key schema.
-        val keySchema = KeySchema.fromDescription(desc.getKeySchema.asScala)
+        val keySchema = KeySchema.fromDescription(desc.getKeySchema.asScala.toSeq)
 
         // User parameters.
         val bytesPerRCU = parameters.getOrElse("bytesperrcu", "4000").toInt

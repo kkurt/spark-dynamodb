@@ -55,7 +55,7 @@ class DynamoDataWriter(batchSize: Int,
 
     protected def flush(): Unit = {
         if (buffer.nonEmpty) {
-            connector.putItems(columnSchema, buffer)(client, rateLimiter)
+            connector.putItems(columnSchema, buffer.toSeq)(client, rateLimiter)
             buffer.clear()
         }
     }

@@ -20,13 +20,14 @@
   */
 package com.audienceproject.spark.dynamodb
 
-import java.util
-
-import collection.JavaConverters._
 import com.amazonaws.services.dynamodbv2.model.{AttributeDefinition, CreateTableRequest, KeySchemaElement, KeyType, ProvisionedThroughput}
 import com.audienceproject.spark.dynamodb.implicits._
 import org.apache.spark.sql.functions.{lit, when, length => sqlLength}
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
+
+import scala.jdk.CollectionConverters.IterableHasAsJava
+
+
 
 class WriteRelationTest extends AbstractInMemoryTest with Matchers {
 

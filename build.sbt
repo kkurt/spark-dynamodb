@@ -6,24 +6,24 @@ version := "1.1.3"
 
 description := "Plug-and-play implementation of an Apache Spark custom data source for AWS DynamoDB."
 
-scalaVersion := "2.12.12"
+scalaVersion := "2.13.14"
 
 compileOrder := CompileOrder.JavaThenScala
 
 resolvers += "DynamoDBLocal" at "https://s3-us-west-2.amazonaws.com/dynamodb-local/release"
 
-libraryDependencies += "com.amazonaws" % "aws-java-sdk-sts" % "1.11.678"
-libraryDependencies += "com.amazonaws" % "aws-java-sdk-dynamodb" % "1.11.678"
-libraryDependencies += "com.amazonaws" % "DynamoDBLocal" % "[1.11,2.0)" % "test" exclude("com.google.guava", "guava")
+libraryDependencies += "com.amazonaws" % "aws-java-sdk-sts" % "1.12.782"
+libraryDependencies += "com.amazonaws" % "aws-java-sdk-dynamodb" % "1.12.782"
+libraryDependencies += "com.amazonaws" % "DynamoDBLocal" % "2.6.0" % "test" exclude("com.google.guava", "guava")
 
-libraryDependencies += "org.apache.spark" %% "spark-sql" % "3.0.0" % "provided"
+libraryDependencies += "org.apache.spark" %% "spark-sql" % "3.5.5" % "provided"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test"
 
-libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.25"
+libraryDependencies += "org.slf4j" % "slf4j-api" % "2.0.17"
 
 libraryDependencies ++= {
-    val log4j2Version = "2.11.1"
+    val log4j2Version = "2.24.3"
     Seq(
         "org.apache.logging.log4j" % "log4j-api" % log4j2Version % "test",
         "org.apache.logging.log4j" % "log4j-core" % log4j2Version % "test",
@@ -35,12 +35,12 @@ libraryDependencies += "com.almworks.sqlite4java" % "sqlite4java" % "1.0.392" % 
 
 retrieveManaged := true
 
-fork in Test := true
+Test/fork := true
 
 val libManaged = "lib_managed"
 val libManagedSqlite = s"${libManaged}_sqlite4java"
 
-javaOptions in Test ++= Seq(s"-Djava.library.path=./$libManagedSqlite", "-Daws.dynamodb.endpoint=http://localhost:8000")
+Test/javaOptions ++= Seq(s"-Djava.library.path=./$libManagedSqlite", "-Daws.dynamodb.endpoint=http://localhost:8000")
 
 /**
   * Put all sqlite4java dependencies in [[libManagedSqlite]] for easy reference when configuring java.library.path.
@@ -98,7 +98,7 @@ Test / resourceGenerators += Def.task {
   * Maven specific settings for publishing to Maven central.
   */
 publishMavenStyle := true
-publishArtifact in Test := false
+Test/publishArtifact := false
 pomIncludeRepository := { _ => false }
 publishTo := {
     val nexus = "https://oss.sonatype.org/"

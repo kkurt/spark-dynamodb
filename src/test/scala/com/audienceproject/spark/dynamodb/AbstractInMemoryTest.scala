@@ -27,9 +27,11 @@ import com.amazonaws.services.dynamodbv2.local.server.DynamoDBProxyServer
 import com.amazonaws.services.dynamodbv2.model.{AttributeDefinition, CreateTableRequest, KeySchemaElement, ProvisionedThroughput}
 import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
 import org.apache.spark.sql.SparkSession
-import org.scalatest.{BeforeAndAfterAll, FunSuite}
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.funsuite.AnyFunSuite
 
-class AbstractInMemoryTest extends FunSuite with BeforeAndAfterAll {
+
+class AbstractInMemoryTest extends AnyFunSuite with BeforeAndAfterAll {
 
     val server: DynamoDBProxyServer = ServerRunner.createServerFromCommandLineArgs(Array("-inMemory"))
 

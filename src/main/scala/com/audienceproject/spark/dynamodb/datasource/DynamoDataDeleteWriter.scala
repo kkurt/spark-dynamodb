@@ -32,7 +32,7 @@ class DynamoDataDeleteWriter(batchSize: Int,
 
     protected override def flush(): Unit = {
         if (buffer.nonEmpty) {
-            connector.deleteItems(columnSchema, buffer)(client, rateLimiter)
+            connector.deleteItems(columnSchema, buffer.toSeq)(client, rateLimiter)
             buffer.clear()
         }
     }
